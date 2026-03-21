@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"path/filepath"
 )
 
 func main() {
@@ -16,6 +17,7 @@ func main() {
 	fmt.Print("インストール先のパスを入力してください: ")
 	fmt.Scanln(&installPath)
 	params.Path = installPath
+	params.PluginsPath = filepath.Join(params.Path, "Plugins")
 
 	executor := InstallExecutor{Params: params}
 	err := executor.Execute()

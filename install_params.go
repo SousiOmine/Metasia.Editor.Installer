@@ -15,21 +15,38 @@ type InstallParams struct {
 	Path                 string
 	MetasiaAssetsUrl     string
 	MetasiaAssetFileName string
+	PluginsPath          string
+	Plugins              []PluginInfo
+}
+
+type PluginInfo struct {
+	AssetUrl string
+	FileName string
 }
 
 func (p *InstallParams) SetDefault() {
-	version := "v0.1.2"
+	version := "v0.2.2"
 	switch runtime.GOOS {
 	case "windows":
 		p.Path = filepath.Join(os.Getenv("ProgramFiles"), "Metasia")
 		p.MetasiaAssetFileName = "MetasiaEditor-windows-x64.zip"
+		p.PluginsPath = filepath.Join(os.Getenv("APPDATA"), "Metasia", "Plugins")
+
+		mediaFoundationPlugin := PluginInfo{
+			FileName: "MediaFoundationPlugin-windows-x64.zip",
+		}
+		mediaFoundationPlugin.AssetUrl, _ = ResolveGithubAssetUrl("SousiOmine", "Metasia.Editor.MediaFoundationPlugin", "v0.2.2", mediaFoundationPlugin.FileName)
+		p.Plugins = append(p.Plugins, mediaFoundationPlugin)
 	default:
 		p.Path = ""
 		p.MetasiaAssetFileName = ""
+		userConfigDir, _ := os.UserConfigDir()
+		p.PluginsPath = filepath.Join(userConfigDir, "Metasia", "Plugins")
 	}
 
 	var err error
 	p.MetasiaAssetsUrl, err = ResolveGithubAssetUrl("SousiOmine", "Metasia", version, p.MetasiaAssetFileName)
+	p.PluginsPath = filepath.Join(p.Path, "Plugins")
 	if err != nil {
 		fmt.Println("Failed to resolve asset URL:", err)
 		p.MetasiaAssetsUrl = ""
