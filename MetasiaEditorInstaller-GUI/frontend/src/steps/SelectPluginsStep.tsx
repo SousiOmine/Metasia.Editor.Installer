@@ -2,19 +2,18 @@ import { useEffect, useState } from 'react';
 import '../App.css';
 import { StepProps } from '../types/wizard';
 
-function WelcomeStep({setCanNavigateNext, setCanNavigateBack, setNextLabel}: StepProps) {
+function SelectPluginsStep({ setCanNavigateNext, setCanNavigateBack, setNextLabel }: StepProps) {
     useEffect(() => {
         setCanNavigateNext(true);
-        setCanNavigateBack(false);
+        setCanNavigateBack(true);
         setNextLabel("次へ");
     }, [setCanNavigateNext, setCanNavigateBack, setNextLabel]);
-
     return (
         <div className="welcome-step">
-            <h1>Metasiaエディタ インストーラーへようこそ</h1>
+            <h1>インストールするプラグインを選択してください</h1>
+            まだ選択できません
         </div>
     )
 }
 
-
-export default WelcomeStep;
+export default SelectPluginsStep;

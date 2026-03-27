@@ -2,19 +2,17 @@ import { useEffect, useState } from 'react';
 import '../App.css';
 import { StepProps } from '../types/wizard';
 
-function WelcomeStep({setCanNavigateNext, setCanNavigateBack, setNextLabel}: StepProps) {
+function ConfirmationStep({ setCanNavigateNext, setCanNavigateBack, setNextLabel }: StepProps) {
     useEffect(() => {
         setCanNavigateNext(true);
-        setCanNavigateBack(false);
-        setNextLabel("次へ");
+        setCanNavigateBack(true);
+        setNextLabel("インストール");
     }, [setCanNavigateNext, setCanNavigateBack, setNextLabel]);
-
     return (
         <div className="welcome-step">
-            <h1>Metasiaエディタ インストーラーへようこそ</h1>
+            <h1>インストールの準備ができました</h1>
         </div>
     )
 }
 
-
-export default WelcomeStep;
+export default ConfirmationStep;

@@ -3,57 +3,69 @@
     text-align: center;
 }
 
-#logo {
-    display: block;
+.wizard-navigate-button-container {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.wizard-navigate-button-container button:first-child {
+    margin-right: auto;
+}
+
+.wizard-navigate-button-container button:last-child {
+    margin-left: 10px;
+}
+
+.wizard-navigate-button-container button {
+    color: white;
+    border: 2px solid;
+    background-color: cadetblue;
+    border-color: cadetblue;
+    border-radius: 1.5vh;
+    font-size: large;
+    transition: background-color 0.1s, color 0.1s;
+    &[aria-disabled="true"] {
+        opacity: 0;
+        cursor: not-allowed;
+    }
+}
+
+.wizard-navigate-button-container button:hover {
+    background-color: white;
+    color: cadetblue;
+}
+
+.path-selector {
+    height: max-content;
+    display: flex;
+    justify-content: center;
+    height: 8vh;
+}
+
+.path-selector #install-path {
     width: 50%;
-    height: 50%;
-    margin: auto;
-    padding: 10% 0 0;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: 100% 100%;
-    background-origin: content-box;
+    font-size: large;
+    padding: 5px;
 }
 
-.result {
-    height: 20px;
-    line-height: 20px;
-    margin: 1.5rem auto;
+.path-selector #select-path-button {
+    font-size: large;
+    padding: 5px;
+    margin-left: 5px;
+
+    color: white;
+    border: 2px solid;
+    background-color: cadetblue;
+    border-color: cadetblue;
+    border-radius: 1.5vh;
+    transition: background-color 0.1s, color 0.1s;
 }
 
-.input-box .btn {
-    width: 60px;
-    height: 30px;
-    line-height: 30px;
-    border-radius: 3px;
-    border: none;
-    margin: 0 0 0 20px;
-    padding: 0 8px;
-    cursor: pointer;
-}
-
-.input-box .btn:hover {
-    background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
-    color: #333333;
-}
-
-.input-box .input {
-    border: none;
-    border-radius: 3px;
-    outline: none;
-    height: 30px;
-    line-height: 30px;
-    padding: 0 10px;
-    background-color: rgba(240, 240, 240, 1);
-    -webkit-font-smoothing: antialiased;
-}
-
-.input-box .input:hover {
-    border: none;
-    background-color: rgba(255, 255, 255, 1);
-}
-
-.input-box .input:focus {
-    border: none;
-    background-color: rgba(255, 255, 255, 1);
+.path-selector #select-path-button:hover {
+    background-color: white;
+    color: cadetblue;
 }
